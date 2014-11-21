@@ -39,7 +39,6 @@ public class SearchLocationActivity extends Activity {
     private ListView cityListView;
     private CityAdapter adp;
     private WeatherClient client;
-    EditText edt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +51,7 @@ public class SearchLocationActivity extends Activity {
         adp = new CityAdapter(SearchLocationActivity.this, new ArrayList<City>());
         cityListView.setAdapter(adp);
 
-        edt = (EditText) findViewById(R.id.editText);
+        final EditText edt = (EditText) findViewById(R.id.editText);
         edt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
