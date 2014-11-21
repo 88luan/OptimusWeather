@@ -7,5 +7,6 @@
     <string name="action_refresh">Refresh</string>
     <string name="action_locate">Locate</string>
     <string name="action_share">Share</string>
+    <string name="title_activity_search_location">Search Location</string>
 
 </resources>
