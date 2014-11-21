@@ -4,11 +4,16 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,6 +39,7 @@ public class SearchLocationActivity extends Activity {
     private ListView cityListView;
     private CityAdapter adp;
     private WeatherClient client;
+    EditText edt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +52,7 @@ public class SearchLocationActivity extends Activity {
         adp = new CityAdapter(SearchLocationActivity.this, new ArrayList<City>());
         cityListView.setAdapter(adp);
 
-        final EditText edt = (EditText) findViewById(R.id.editText);
+        edt = (EditText) findViewById(R.id.editText);
         edt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -80,25 +86,31 @@ public class SearchLocationActivity extends Activity {
     }
 
     private void search(String input) {
+        final ProgressDialog progressDialog;
+        progressDialog = newInstance(SearchLocationActivity.this);
+        progressDialog.show();
+
         client.searchCity(input, new WeatherClient.CityEventListener() {
             @Override
             public void onCityListRetrieved(List<City> cityList) {
                 adp.setCityList(cityList);
                 adp.notifyDataSetChanged();
+                progressDialog.dismiss();
             }
 
             @Override
             public void onWeatherError(WeatherLibException t) {
+                progressDialog.dismiss();
             }
 
             @Override
             public void onConnectionError(Throwable t) {
+                progressDialog.dismiss();
             }
         });
     }
 
     //region Show Alert Dialog
-
     public static class AlertDialogFragment extends DialogFragment {
 
         public static AlertDialogFragment newInstance(String id, String city, String country) {
@@ -154,8 +166,24 @@ public class SearchLocationActivity extends Activity {
         DialogFragment newFragment = AlertDialogFragment.newInstance(id,city,country);
         newFragment.show(getFragmentManager(), "dialogAlert");
     }
-
     //endregion
+
+    /**
+     * custom ProgressDialog không có title, không có phần message, chỉ có icon
+     * @param mContext
+     * @return ProgressDialog
+     */
+    public static ProgressDialog newInstance(Context mContext) {
+        ProgressDialog dialog = new ProgressDialog(mContext);
+        try {
+            dialog.show();
+        } catch (Exception e) {
+        }
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.progress_dialog);
+        // dialog.setMessage(Message);
+        return dialog;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
