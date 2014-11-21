@@ -1,5 +1,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" android:showAsAction="never" />
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_settings" />
+    <item
+        android:id="@+id/action_refresh"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_refresh"
+        android:icon="@drawable/ic_action_refresh"/>
+    <item
+        android:id="@+id/action_locate"
+        android:orderInCategory="101"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_locate"
+        android:icon="@drawable/ic_action_place"/>
+    <item
+        android:id="@+id/action_share"
+        android:orderInCategory="102"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_share"
+        android:icon="@drawable/ic_action_share"/>
 </menu>
