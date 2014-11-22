@@ -29,7 +29,7 @@
         android:id="@+id/location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="34sp"
         android:textColor="@color/blue_500"/>
 
     <RelativeLayout
@@ -74,7 +74,7 @@
             android:layout_width="@dimen/weatherMainIcon.width"
             android:layout_height="@dimen/weatherMainIcon.height"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/layout_temp"
             android:background="@drawable/circle"
             android:padding="4dp" />
@@ -84,104 +84,121 @@
 
 
     <!-- Here the current weather data -->
+    <TextView
+        android:id="@+id/tvDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tempLyt"
+        android:layout_marginTop="50dp"
+        android:text="Details"
+        android:textColor="@color/blue_500"
+        android:textSize="34sp"/>
 
     <!-- Temperature data -->
-    <ImageView
-        android:id="@+id/tempIcon"
-        android:layout_width="@dimen/weatherIcon.width"
-        android:layout_height="@dimen/weatherIcon.height"
-        android:layout_below="@id/tempLyt"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/temperature" />
+    <TextView
+        android:id="@+id/tempTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvDetails"
+        android:textSize="20sp"
+        android:text="Temperature"/>
 
     <TextView
         android:id="@+id/tempMin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/tempIcon"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="12dp"
-        android:layout_toRightOf="@id/tempIcon"
-        android:textColor="@color/blue_500" />
-
+        android:text="00"
+        android:textColor="@color/blue_500"
+        android:layout_alignBottom="@+id/tempTV"
+        android:layout_toRightOf="@+id/tempTV"
+        android:textSize="20sp"
+        android:layout_marginLeft="20dp"/>
+    <TextView
+        android:id="@+id/tv_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="to"
+        android:layout_alignBottom="@+id/tempTV"
+        android:layout_toRightOf="@+id/tempMin"
+        android:textSize="20sp"
+        android:layout_marginLeft="5dp"/>
     <TextView
         android:id="@+id/tempMax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/tempMin"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@id/tempMin"
+        android:text="00"
+        android:layout_alignBottom="@+id/tempTV"
+        android:layout_toRightOf="@+id/tv_to"
+        android:textSize="20sp"
+        android:layout_marginLeft="5dp"
         android:textColor="@color/red_500" />
     <!-- End temp Data -->
 
     <!-- Wind data -->
-    <ImageView
-        android:id="@+id/windIcon"
-        android:layout_width="@dimen/weatherIcon.width"
-        android:layout_height="@dimen/weatherIcon.height"
-        android:layout_below="@id/tempIcon"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/wind" />
+    <TextView
+        android:id="@+id/windTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tempTV"
+        android:text="Wind"
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/windSpeed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/tempMin"
-        android:layout_alignTop="@id/windIcon"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="12dp"
-        android:layout_toRightOf="@id/windIcon" />
+        android:text="00"
+        android:textSize="20sp"
+        android:layout_alignBottom="@+id/windTV"
+        android:layout_alignLeft="@+id/tempMin"/>
 
     <TextView
         android:id="@+id/windDeg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/windSpeed"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@id/windSpeed" />
+        android:text="00"
+        android:textSize="20sp"
+        android:layout_alignBottom="@+id/windTV"
+        android:layout_toRightOf="@+id/windSpeed"
+        android:layout_marginLeft="10dp"/>
     <!-- End wind Data -->
 
     <!-- Humidity -->
-    <ImageView
-        android:id="@+id/humidityIcon"
-        android:layout_width="@dimen/weatherIcon.width"
-        android:layout_height="@dimen/weatherIcon.height"
-        android:layout_below="@id/windIcon"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/humidity" />
+    <TextView
+        android:id="@+id/humidityTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/windTV"
+        android:text="Humidity"
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/humidity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/tempMin"
-        android:layout_alignTop="@id/humidityIcon"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="12dp"
-        android:layout_toRightOf="@id/humidityIcon" />
+        android:layout_alignBottom="@+id/humidityTV"
+        android:text="00"
+        android:textSize="20sp"/>
     <!-- End Humidity Data -->
 
     <!-- Pressure data -->
-    <ImageView
-        android:id="@+id/pressureIcon"
-        android:layout_width="@dimen/weatherIcon.width"
-        android:layout_height="@dimen/weatherIcon.height"
-        android:layout_alignBaseline="@id/tempIcon"
-        android:layout_below="@id/tempLyt"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="30dp"
-        android:layout_toRightOf="@id/windDeg"
-        android:src="@drawable/pressure" />
+    <TextView
+        android:id="@+id/pressureTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/humidityTV"
+        android:text="Pressure"
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/pressure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/pressureIcon"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="12dp"
-        android:layout_toRightOf="@id/pressureIcon" />
+        android:text="00"
+        android:textSize="20sp"
+        android:layout_alignLeft="@id/tempMin"
+        android:layout_alignBottom="@+id/pressureTV" />
 
     <TextView
         android:id="@+id/pressureStat"
@@ -189,92 +206,67 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@id/pressure"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@id/pressure" />
+        android:layout_toRightOf="@id/pressure"
+        android:textSize="20sp"/>
     <!-- End Pressure data -->
 
     <!-- Astronomy -->
-    <ImageView
+    <TextView
         android:id="@+id/sunIcon"
-        android:layout_width="@dimen/weatherIcon.width"
-        android:layout_height="@dimen/weatherIcon.height"
-        android:layout_alignBaseline="@id/windIcon"
-        android:layout_alignLeft="@id/pressureIcon"
-        android:layout_below="@id/pressureIcon"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/windDeg"
-        android:src="@drawable/sun" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pressureTV"
+        android:text="Sunrise"
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/sunrise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/sunIcon"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="12dp"
-        android:layout_toRightOf="@id/sunIcon" />
+        android:layout_alignLeft="@id/tempMin"
+        android:layout_alignBaseline="@+id/sunIcon"
+        android:textSize="20sp"
+        android:text="00"/>
 
-    <ImageView
+    <TextView
         android:id="@+id/moonIcon"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_alignBaseline="@id/humidityIcon"
-        android:layout_alignLeft="@id/pressureIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/sunIcon"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/windDeg"
-        android:src="@drawable/moon" />
+        android:text="Sunset"
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/sunset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/moonIcon"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="12dp"
-        android:layout_toRightOf="@id/moonIcon" />
+        android:layout_alignLeft="@+id/tempMin"
+        android:layout_alignBaseline="@+id/moonIcon"
+        android:text="00"
+        android:textSize="20sp"/>
     <!-- End astronomy -->
 
     <!-- Rain -->
-    <ImageView
-        android:id="@+id/rainIcon"
-        android:layout_width="@dimen/weatherIcon.width"
-        android:layout_height="@dimen/weatherIcon.height"
-        android:layout_alignBaseline="@id/windIcon"
-        android:layout_alignLeft="@id/pressureIcon"
+    <TextView
+        android:id="@+id/rainTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/moonIcon"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/windDeg"
-        android:src="@drawable/umbrella" />
+        android:text="Rain"
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/rain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/rainIcon"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="12dp"
-        android:layout_toRightOf="@id/rainIcon" />
+        android:layout_alignLeft="@+id/tempMin"
+        android:layout_alignBaseline="@id/rainTV"
+        android:text="00"
+        android:textSize="20sp"/>
 
     <!-- End Rain -->
 
-    <!-- Cloud -->
-    <ImageView
-        android:id="@+id/cloudIcon"
-        android:layout_width="@dimen/weatherIcon.width"
-        android:layout_height="@dimen/weatherIcon.height"
-        android:layout_below="@id/humidityIcon"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/cloud" />
 
-    <TextView
-        android:id="@+id/cloud"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/tempMin"
-        android:layout_alignTop="@id/cloudIcon"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="12dp"
-        android:layout_toRightOf="@id/cloudIcon" />
 
 
 </RelativeLayout>

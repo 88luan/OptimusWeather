@@ -45,7 +45,6 @@ public class CurrentFragment extends Fragment {
     private TextView tempMax;
     private TextView sunset;
     private TextView sunrise;
-    private TextView cloud;
     private TextView rain;
 
     private WeatherConfig config;
@@ -85,7 +84,6 @@ public class CurrentFragment extends Fragment {
         unitTemp = (TextView) mRootView.findViewById(R.id.tempUnit);
         sunrise = (TextView) mRootView.findViewById(R.id.sunrise);
         sunset = (TextView) mRootView.findViewById(R.id.sunset);
-        cloud = (TextView) mRootView.findViewById(R.id.cloud);
         rain = (TextView) mRootView.findViewById(R.id.rain);
 
 		return mRootView;
@@ -166,7 +164,6 @@ public class CurrentFragment extends Fragment {
                     }
                 });
                 */
-                cloud.setText(weather.clouds.getPerc() + "%");
 
                 if (weather.rain[0].getTime() != null && weather.rain[0].getAmmount() != 0)
                     rain.setText(weather.rain[0].getTime() + ":" + weather.rain[0].getAmmount());
