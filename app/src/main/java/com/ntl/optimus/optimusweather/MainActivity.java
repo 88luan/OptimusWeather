@@ -90,7 +90,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent intent = new Intent(getApplication(), SettingsActivity.class);
+            startActivity(intent);
         }
         else if (id == R.id.action_locate) {
             Intent intent = new Intent(getApplication(), SearchLocationActivity.class);

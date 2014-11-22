@@ -3,6 +3,7 @@ package com.ntl.optimus.optimusweather.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -157,13 +158,22 @@ public class CurrentFragment extends Fragment {
                 imgView.setImageResource(WeatherIconMapper.getWeatherResource(weather.currentCondition.getIcon(), weather.currentCondition.getWeatherId()));
 
                 /*
-                client.getDefaultProviderImage(weather.currentCondition.getIcon(), new WeatherClient.WeatherImageListener() {
+                weatherClient.getDefaultProviderImage(weather.currentCondition.getIcon(), new WeatherClient.WeatherImageListener() {
                     @Override
                     public void onImageReady(Bitmap image) {
                         imgView.setImageBitmap(image);
                     }
+
+                    @Override
+                    public void onWeatherError(WeatherLibException wle) {
+                    }
+
+                    @Override
+                    public void onConnectionError(Throwable t) {
+                    }
                 });
                 */
+
 
                 if (weather.rain[0].getTime() != null && weather.rain[0].getAmmount() != 0)
                     rain.setText(weather.rain[0].getTime() + ":" + weather.rain[0].getAmmount());
