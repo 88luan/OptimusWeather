@@ -1,6 +1,8 @@
 package com.ntl.optimus.optimusweather.fragment;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -29,7 +31,6 @@ import com.survivingwithandroid.weather.lib.util.WindDirection;
 
 public class CurrentFragment extends Fragment {
     private SharedPreferences sharedPreferences;
-    private String cityId;
     private View mRootView;
 
     // UI elements
@@ -95,7 +96,7 @@ public class CurrentFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode== MainActivity.REQUEST_CODE_LOCATION) {
             if(resultCode == Activity.RESULT_OK){
-                cityId = sharedPreferences.getString("cityid", "");
+                String cityId = sharedPreferences.getString("cityid", "");
                 String city = sharedPreferences.getString("cityName","");
                 String country = sharedPreferences.getString("country","");
 
@@ -114,7 +115,11 @@ public class CurrentFragment extends Fragment {
         refresh();
     }
 
-    private void refresh() {
+    public void refresh() {
+        final ProgressDialog progressDialog;
+        progressDialog = newInstance(getActivity());
+        progressDialog.show();
+
         config = new WeatherConfig();
         String cityId = sharedPreferences.getString("cityid", null);
         Log.w("Swa", "City Id [" + cityId + "]");
@@ -180,21 +185,41 @@ public class CurrentFragment extends Fragment {
                 else
                     rain.setText("----");
 
+                progressDialog.dismiss();
             }
 
             @Override
             public void onWeatherError(WeatherLibException t) {
                 //WeatherDialog.createErrorDialog("Error parsing data. Please try again", MainActivity.this);
+                progressDialog.dismiss();
             }
 
             @Override
             public void onConnectionError(Throwable t) {
                 //WeatherDialog.createErrorDialog("Error parsing data. Please try again", MainActivity.this);
+                progressDialog.dismiss();
             }
         });
 
 
 
+    }
+
+    /**
+     * custom ProgressDialog không có title, không có phần message, chỉ có icon
+     * @param mContext
+     * @return ProgressDialog
+     */
+    public static ProgressDialog newInstance(Context mContext) {
+        ProgressDialog dialog = new ProgressDialog(mContext);
+        try {
+            dialog.show();
+        } catch (Exception e) {
+        }
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.progress_dialog);
+        // dialog.setMessage(Message);
+        return dialog;
     }
 
 

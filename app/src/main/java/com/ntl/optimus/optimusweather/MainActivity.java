@@ -3,6 +3,7 @@ package com.ntl.optimus.optimusweather;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,6 +16,10 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.ntl.optimus.optimusweather.adapter.TabsPagerAdapter;
+import com.ntl.optimus.optimusweather.fragment.CurrentFragment;
+import com.ntl.optimus.optimusweather.fragment.ForecastFragment;
+
+import java.util.List;
 
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
@@ -96,6 +101,19 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         else if (id == R.id.action_locate) {
             Intent intent = new Intent(getApplication(), SearchLocationActivity.class);
             startActivityForResult(intent, REQUEST_CODE_LOCATION);
+        }
+        else if (id==R.id.action_refresh){
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            List<android.support.v4.app.Fragment> fragments = fragmentManager.getFragments();
+            for(android.support.v4.app.Fragment fragment : fragments){
+                if(fragment != null && fragment.getUserVisibleHint()) {
+                    if(fragment instanceof CurrentFragment)
+                        ((CurrentFragment) fragment).refresh();
+                    else if(fragment instanceof ForecastFragment)
+                        ((ForecastFragment) fragment).refresh();
+                }
+            }
+
         }
 
         return super.onOptionsItemSelected(item);
