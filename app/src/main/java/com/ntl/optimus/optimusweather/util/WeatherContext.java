@@ -1,7 +1,7 @@
 /**
  * ${copyright}.
  */
-package com.ntl.optimus.optimusweather;
+package com.ntl.optimus.optimusweather.util;
 
 import android.content.Context;
 
@@ -10,6 +10,7 @@ import com.survivingwithandroid.weather.lib.WeatherConfig;
 import com.survivingwithandroid.weather.lib.client.volley.WeatherClientDefault;
 import com.survivingwithandroid.weather.lib.exception.WeatherProviderInstantiationException;
 import com.survivingwithandroid.weather.lib.provider.openweathermap.OpenweathermapProviderType;
+import com.survivingwithandroid.weather.lib.provider.yahooweather.YahooProviderType;
 
 
 public class WeatherContext {

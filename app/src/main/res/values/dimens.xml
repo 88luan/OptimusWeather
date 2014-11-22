@@ -2,4 +2,9 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- weather icon size-->
+    <dimen name="weatherIcon.height">32dp</dimen>
+    <dimen name="weatherIcon.width">32dp</dimen>
+    <dimen name="weatherMainIcon.height">100dp</dimen>
+    <dimen name="weatherMainIcon.width">100dp</dimen>
 </resources>
