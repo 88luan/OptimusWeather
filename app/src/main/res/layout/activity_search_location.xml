@@ -27,14 +27,22 @@
         android:inputType="text"
         android:ems="10"/>
 
-    <Button
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search"
         android:id="@+id/buttonSearch"
         android:layout_toEndOf="@+id/editText"
         android:layout_alignBottom="@+id/editText"
-        android:layout_toRightOf="@+id/editText" />
+        android:layout_toRightOf="@+id/editText"
+        android:src="@drawable/ic_action_search"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonLocate"
+        android:src="@drawable/ic_action_location_found"
+        android:layout_toRightOf="@+id/buttonSearch"
+        android:layout_alignBottom="@+id/buttonSearch"/>
 
     <TextView
         android:layout_width="wrap_content"

@@ -19,12 +19,15 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ntl.optimus.optimusweather.adapter.CityAdapter;
 import com.ntl.optimus.optimusweather.util.WeatherContext;
 import com.survivingwithandroid.weather.lib.WeatherClient;
+import com.survivingwithandroid.weather.lib.exception.LocationProviderNotFoundException;
 import com.survivingwithandroid.weather.lib.exception.WeatherLibException;
 import com.survivingwithandroid.weather.lib.model.City;
 
@@ -63,7 +66,7 @@ public class SearchLocationActivity extends Activity {
             }
         });
 
-        Button buttonSearch = (Button) findViewById(R.id.buttonSearch);
+        ImageButton buttonSearch = (ImageButton) findViewById(R.id.buttonSearch);
         buttonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +83,42 @@ public class SearchLocationActivity extends Activity {
                 City city = (City) parent.getItemAtPosition(pos);
                 showAlertDialog(city.getId(), city.getName(), city.getCountry());
             }
+        });
+
+        ImageButton buttonLocate = (ImageButton) findViewById(R.id.buttonLocate);
+        buttonLocate.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                final ProgressDialog progressDialog;
+                progressDialog = newInstance(SearchLocationActivity.this);
+                progressDialog.show();
+                try {
+                    client.searchCityByLocation(WeatherClient.createDefaultCriteria(), new WeatherClient.CityEventListener() {
+
+                        @Override
+                        public void onCityListRetrieved(List<City> cityList) {
+                            adp.setCityList(cityList);
+                            adp.notifyDataSetChanged();
+                            progressDialog.dismiss();
+                        }
+
+                        @Override
+                        public void onWeatherError(WeatherLibException wle) {
+                            progressDialog.dismiss();
+                        }
+
+                        @Override
+                        public void onConnectionError(Throwable t) {
+                            progressDialog.dismiss();
+                        }
+                    });
+                }
+                catch(LocationProviderNotFoundException lpnfe) {
+
+                }
+            }
+
         });
     }
 
@@ -177,7 +216,7 @@ public class SearchLocationActivity extends Activity {
             dialog.show();
         } catch (Exception e) {
         }
-        dialog.setCancelable(false);
+        dialog.setCancelable(true);
         dialog.setContentView(R.layout.progress_dialog);
         // dialog.setMessage(Message);
         return dialog;

@@ -5,6 +5,6 @@
     <!-- weather icon size-->
     <dimen name="weatherIcon.height">32dp</dimen>
     <dimen name="weatherIcon.width">32dp</dimen>
-    <dimen name="weatherMainIcon.height">100dp</dimen>
-    <dimen name="weatherMainIcon.width">100dp</dimen>
+    <dimen name="weatherMainIcon.height">96dp</dimen>
+    <dimen name="weatherMainIcon.width">96dp</dimen>
 </resources>

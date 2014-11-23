@@ -34,23 +34,23 @@
 
     <RelativeLayout
         android:id="@+id/tempLyt"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/location"
-        android:layout_centerHorizontal="true"
         android:background="@color/light_green_500"
         android:padding="10dp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/layout_temp">
+            android:id="@+id/layout_temp"
+            android:layout_centerVertical="true">
 
             <TextView
                 android:id="@+id/temp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="60sp"/>
+                android:textSize="80sp"/>
 
             <TextView
                 android:id="@+id/tempUnit"
@@ -58,29 +58,23 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/temp"
                 android:layout_toRightOf="@id/temp"
-                android:textSize="60sp" />
-
-            <TextView
-                android:id="@+id/descrWeather"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/temp"
-                android:layout_centerHorizontal="true"
-                android:textSize="20sp" />
-
-
+                android:textSize="80sp" />
         </RelativeLayout>
 
         <ImageView
             android:id="@+id/imgWeather"
             android:layout_width="@dimen/weatherMainIcon.width"
             android:layout_height="@dimen/weatherMainIcon.height"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/layout_temp"
             android:background="@drawable/circle"
-            android:padding="4dp" />
-
+            android:layout_alignParentRight="true"
+            android:padding="2dp" />
+        <TextView
+            android:id="@+id/descrWeather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgWeather"
+            android:layout_alignRight="@+id/imgWeather"
+            android:textSize="20sp" />
 
     </RelativeLayout>
 
@@ -249,7 +243,7 @@
         android:textSize="20sp"/>
     <!-- End astronomy -->
 
-    <!-- Rain -->
+    <!-- Rain
     <TextView
         android:id="@+id/rainTV"
         android:layout_width="wrap_content"
@@ -266,6 +260,7 @@
         android:layout_alignBaseline="@id/rainTV"
         android:text="00"
         android:textSize="20sp"/>
+    -->
 
     <!-- End Rain -->
 

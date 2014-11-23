@@ -5,7 +5,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
+import android.graphics.LightingColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -13,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -47,7 +50,6 @@ public class CurrentFragment extends Fragment {
     private TextView tempMax;
     private TextView sunset;
     private TextView sunrise;
-    private TextView rain;
 
     private WeatherConfig config;
     private WeatherClient weatherClient;
@@ -86,9 +88,7 @@ public class CurrentFragment extends Fragment {
         unitTemp = (TextView) mRootView.findViewById(R.id.tempUnit);
         sunrise = (TextView) mRootView.findViewById(R.id.sunrise);
         sunset = (TextView) mRootView.findViewById(R.id.sunset);
-        rain = (TextView) mRootView.findViewById(R.id.rain);
-
-		return mRootView;
+        return mRootView;
 	}
 
     @Override
@@ -99,9 +99,6 @@ public class CurrentFragment extends Fragment {
                 String cityId = sharedPreferences.getString("cityid", "");
                 String city = sharedPreferences.getString("cityName","");
                 String country = sharedPreferences.getString("country","");
-
-//                TextView textView = (TextView) mRootView.findViewById(R.id.textViewCity);
-//                textView.setText(city + ", " + country);
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 //Write your code if there's no result
@@ -146,7 +143,7 @@ public class CurrentFragment extends Fragment {
             public void onWeatherRetrieved(CurrentWeather cWeather) {
                 Weather weather = cWeather.weather;
                 cityText.setText(weather.location.getCity() + "," + weather.location.getCountry());
-                condDescr.setText(weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescr() + ")");
+                condDescr.setText(weather.currentCondition.getDescr());
                 temp.setText("" + ((int) weather.temperature.getTemp()));
                 unitTemp.setText(cWeather.getUnit().tempUnit);
                 hum.setText(weather.currentCondition.getHumidity() + "%");
@@ -179,11 +176,13 @@ public class CurrentFragment extends Fragment {
                 });
                 */
 
+/*
 
                 if (weather.rain[0].getTime() != null && weather.rain[0].getAmmount() != 0)
                     rain.setText(weather.rain[0].getTime() + ":" + weather.rain[0].getAmmount());
                 else
                     rain.setText("----");
+*/
 
                 progressDialog.dismiss();
             }
