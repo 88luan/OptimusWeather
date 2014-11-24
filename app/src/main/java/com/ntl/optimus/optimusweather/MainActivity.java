@@ -106,7 +106,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         else if (id == R.id.action_locate) {
             Intent intent = new Intent(getApplication(), SearchLocationActivity.class);
             startActivityForResult(intent, REQUEST_CODE_LOCATION);
-            overridePendingTransition( R.anim.slide_in_left, R.anim.slide_in_left);
+            overridePendingTransition( R.anim.slide_in_left, R.anim.slide_out_left);
         }
         else if (id==R.id.action_refresh){
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
