@@ -18,6 +18,6 @@
         android:id="@+id/action_settings"
         android:orderInCategory="102"
         android:showAsAction="ifRoom"
-        android:title="@string/action_share"
-        android:icon="@drawable/ic_action_settings"/>
+        android:title="@string/action_settings"
+        android:icon="@android:drawable/ic_menu_preferences"/>
 </menu>

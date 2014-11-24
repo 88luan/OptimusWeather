@@ -7,6 +7,8 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
@@ -38,14 +40,16 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         setContentView(R.layout.activity_main);
         setTitle("Weather");
 
-
         mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.main);
         mViewPager.setAdapter(mAdapter);
         mActionBar = getActionBar();
         mActionBar.setHomeButtonEnabled(false);
         mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        // Adding Tabs
+        //ActionBar Color
+        mActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.indigo_500)));
+        //Tab Color
+        mActionBar.setStackedBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.indigo_500)));
         for (String tab_name : tabs) {
             mActionBar.addTab(mActionBar.newTab().setText(tab_name)
                     .setTabListener(this));
@@ -97,10 +101,12 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         if (id == R.id.action_settings) {
             Intent intent = new Intent(getApplication(), SettingsActivity.class);
             startActivity(intent);
+            overridePendingTransition( R.anim.slide_in_left, R.anim.slide_out_left );
         }
         else if (id == R.id.action_locate) {
             Intent intent = new Intent(getApplication(), SearchLocationActivity.class);
             startActivityForResult(intent, REQUEST_CODE_LOCATION);
+            overridePendingTransition( R.anim.slide_in_left, R.anim.slide_out_left );
         }
         else if (id==R.id.action_refresh){
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
