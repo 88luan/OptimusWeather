@@ -1,27 +1,23 @@
 package com.ntl.optimus.optimusweather;
 
 import android.app.ActionBar;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.view.ViewGroup;
 
-import com.ntl.optimus.optimusweather.adapter.TabsPagerAdapter;
 import com.ntl.optimus.optimusweather.fragment.CurrentFragment;
 import com.ntl.optimus.optimusweather.fragment.ForecastFragment;
 
 import java.util.List;
+
+import ntl.optimus.com.jazzyviewpager.JazzyViewPager;
 
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
@@ -29,8 +25,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     public static final int REQUEST_CODE_LOCATION = 27;
 
     private String cityId;
-    private ViewPager mViewPager;
-    private TabsPagerAdapter mAdapter;
+    private JazzyViewPager mJazzyViewpager;
     private ActionBar mActionBar;
     private String[] tabs = { "Current", "Forecast" };
 
@@ -40,9 +35,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         setContentView(R.layout.activity_main);
         setTitle("Weather");
 
-        mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
-        mViewPager = (ViewPager) findViewById(R.id.main);
-        mViewPager.setAdapter(mAdapter);
+        setupJazzyViewpager(JazzyViewPager.TransitionEffect.CubeOut);
         mActionBar = getActionBar();
         mActionBar.setHomeButtonEnabled(false);
         mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -54,7 +47,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             mActionBar.addTab(mActionBar.newTab().setText(tab_name)
                     .setTabListener(this));
         }
-        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mJazzyViewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
             public void onPageSelected(int position) {
@@ -129,7 +122,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
         // on tab selected
         // show respected fragment view
-        mViewPager.setCurrentItem(tab.getPosition());
+        mJazzyViewpager.setCurrentItem(tab.getPosition());
     }
 
     @Override
@@ -140,5 +133,47 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
 
+    }
+
+    public class TabsPagerAdapter extends FragmentPagerAdapter {
+
+        public TabsPagerAdapter(android.support.v4.app.FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public android.support.v4.app.Fragment getItem(int index) {
+
+            switch (index) {
+                case 0:
+                    // Top Rated fragment activity
+                    return new CurrentFragment();
+                case 1:
+                    // Games fragment activity
+                    return new ForecastFragment();
+            }
+
+            return null;
+        }
+
+        @Override
+        public int getCount() {
+            // get item count - equal to number of tabs
+            return 2;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, final int position) {
+            Object obj = super.instantiateItem(container, position);
+            mJazzyViewpager.setObjectForPosition(obj, position);
+            return obj;
+        }
+    }
+
+    private void setupJazzyViewpager(JazzyViewPager.TransitionEffect effect) {
+        mJazzyViewpager = (JazzyViewPager) findViewById(R.id.main);
+        mJazzyViewpager.setTransitionEffect(effect);
+        mJazzyViewpager.setAdapter(new TabsPagerAdapter(getSupportFragmentManager()));
+//        mJazzyViewpager.setPageMargin(0);
     }
 }

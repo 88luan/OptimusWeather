@@ -215,7 +215,7 @@ public class CurrentFragment extends Fragment {
             dialog.show();
         } catch (Exception e) {
         }
-        dialog.setCancelable(false);
+        dialog.setCancelable(true);
         dialog.setContentView(R.layout.progress_dialog);
         // dialog.setMessage(Message);
         return dialog;

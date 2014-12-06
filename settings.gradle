@@ -1,1 +1,1 @@
-include ':app', ':lib', ':volleyclient'
+include ':app', ':lib', ':volleyclient', ':jazzyviewpager'
